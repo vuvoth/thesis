@@ -1,26 +1,23 @@
 \documentclass[../thesis.tex]{subfiles}
 
 \begin{document}
+\section{Đặt vấn đề}
+Năm 2008, một người(hoặc nhóm người) ẩn danh tên Satoshi Nakamoto đã lần đầu tiên ứng dụng công nghệ blockchain để xây dựng nên Bitcoin một loại tiền ảo giải quyết được vấn đề double-spending. Từ đó nhiều ứng dụng áp dụng công nghệ blockchain đã ra đời trải rộng khắp trên các lĩnh vực kinh tế, ngân hàng, y tế, trò chơi... Trong năm 2013, nhà lập trình người Nga-Canada Vitalik Buterin đã đề xuất một về blockchain mới - Ethereum. Sau đó 2 năm tức 2015, Ethereum chính thức khởi chạy. Ethereum kết thừa nhiều khái niệm làm nên Bitcoin blockchain. Tuy nhiên bằng việc tính hợp tính năng phát triển hợp đồng thông minh, Ethereum lại mang tính ứng dụng cao hơn. Nền tảng cho phép mọi người có thể thiết kế, phát triển, triển khai và tương tác với các hợp đồng thông minh, cho phép nhà phát triển tạo các ứng dụng phân tán(dApp) dễ dàng hơn. Điều này tạo ra một hệ sinh thái trên Ethereum rất đa dạng và phong phú, với nhiều ứng dụng được xây dựng trên nền tảng Ethereum blockchain.
 
-Nội dung chương 1.
+Ethereum ra đời là một bước tiến lớn với công nghệ blockchain. Nhưng cái gì cũng có 2 mặt, bản thân Ethereum blockchain cũng tồn tại những mặt yếu, kiến cho nó khó tiếp cận với nhiều người dùng. Một trong số đó là vấn đề hiệu suất và chi phí. Để gọi tới smart contract và thực thi chúng chúng ta cần phải tốn một chi phí nhất định, người dùng sẽ phải trả cho người đào một số tiền tính bằng ETH để người đào thực thi và ghi các giao dịch đó vào blockchain. Do tính biến động của ETH chi phí này đôi khi tương đối lớn. Hơn nửa một giây Ethereum chỉ đáp ứng được từ 13 TPS đến 17 TPS (TPS = transaction per second nghĩa là số giao dịch trên một giây), người dùng nào muốn giao dịch của mình thực hiện nhanh hơn thì phải trả nhiều tiền hơn, điều này dẫn tới việc lạm phát và người dùng sẽ phải chi trả nhiều hơn để thực hiện giao dịch của mình hoặc bạn phải ngồi chờ hàng giờ cho tới khi giao dịch được thực thi.
 
-Cách chèn link:
+Sự việc mạng bị kẹt vào năm 2017 do quá nhiều người truy cập vào Ethereum để tương tác với ứng dụng Cryptokitties là một ví dụ cụ thể. Cryptokitties là một trò chơi sưu tầm, nơi họ sưu tầm các chú mèo điện tử dưới dạng NFTs. Vào thời điểm đó người ta ghi nhận có khoảng 30000 giao dịch bị mắc kẹt trên Ethereum. Những điều đó làm ảnh hưởng rất lớn tới trải nghiệm người dùng và nó cũng đe doạ tới tính sống còn của Ethereum. Vấn đề scalability trở thành vấn đề cần phải được giải quyết nhanh nhất có thể.
+Trước tình tình đó, nhiều giải pháp đã được đề xuất. Core team của Ethereum họ tiến hành phát triển Ethereum 2.0 có thể thực hiện hàng ngàn giao dịch trên giây với chi phí rất nhỏ. Nhưng việc này đòi hỏi rất nhiều thời gian để phát triển, người ta phải tìm các giải pháp thay thế khác. Thay việc làm tất cả mọi thứ trên blockchain, người ta sẽ thực hiện nó trên một lớp off-chain và bằng một các nào đó người ta xác định các hoạt động này là hợp lệ hay không. Thông qua đó giảm tải việc tính toán trên on-chain, tiết kiệm và giảm chi phí đi đáng kể. zk-Rollup là một phương pháp như vậy.
 
-\begin{Verbatim}
-https://console.cloud.google.com/freetrial
-\end{Verbatim}
+\section{Các nghiên cứu liên quan}
+Với ý tưởng về xử lý dữ liệu off-chain, các giải pháp như state channel, side chain, plasma hay layer 2 đã ra đời. Mỗi phương pháp điều có điểm mạnh và điểm yếu riêng. Plasma \cite{Plasma} là kỹ thuật tiên phong trong Ethereum nhưng không may nó lại khó xây dựng trong thực tế. Phương pháp Rollup là một giải pháp khác với nhiều tiến bộ hơn với hai biến thể phổ biến là Optimistic rollups và zk-Rollup. Người ta đã xây đựng được các ứng dụng thực tế từ các phương pháp này như zkSync, loopring hay Hermez cho phép người dùng tham gia vào các layer và thực hiện giao dịch với các chi phí nhỏ hơn.
 
-Cách chèn source code:
+\section{Mục tiêu đề tài}
+Trong luận văn này chủ yếu tôi sẽ trình bày về phương pháp zk-Rollup, các cơ sở lý thuyết và kiến trúc của nó, qua đó xây dựng được một layer 2 của riêng mình và qua đó giải quyết vấn đề scalability cho Ethereum. Với đề tài này tôi hi vọng mình có thể đóng góp một phần nào có cho việc xây dựng một hệ thống public blockchain tốt hơn, dù phần lớn các nghiên cứu trong luận văn là do tôi tiếp thu và học hỏi từ các công trình có sẳn. Đây là bước đầu tiên, nhưng sẽ không phải là bước cuối cùng của tôi trong lĩnh vực này.
 
-\begin{Verbatim}
-#include <stdio.h>
+Trong đề tài này tôi xin xây dựng một layer 2 sử dụng zk-Rollup cho phép gửi, rút token vào layer cũng như giao dịch với chi phí thấp với số lượng TPS cao.
 
-int main() {
-	printf("hello, world!\n");
-	return 0;
-}
-\end{Verbatim}
+\section{Bố cục luận văn}
+Luận văn được chia làm 3 phần, phần đầu tiên là phần giới thiệu, giới thiệu tổng quát về đề tài. Phần thứ 2 là phần nội dung. Trong phần này trình bày các cơ sở lý thuyết và phương pháp zk-Rollup. Phần thứ 3 là phần kết luận trình bày kết quả và phương hướng trong tương lai. Source code của luận văn này được opensource ở https://github.com/vuvth/e21.
 
-Đây là \texttt{source code} trong đoạn văn.
-	
 \end{document}

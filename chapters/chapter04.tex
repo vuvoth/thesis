@@ -1,0 +1,20 @@
+\documentclass[../thesis.tex]{subfiles}
+
+\begin{document}
+
+\section{Kết luận}
+Với phương pháp zk-Rollup, tôi đã xây đựng được một layer 2 có thể giao dịch token trên Ethereum với chi phí cho việc chuyển đổi token trong layer rẻ. Tuy ứng dụng còn thô sơ như nó cũng chứng mình được tính khả thi của giải pháp, qua đó giúp có những cái nhìn đầu tiên về bài toán mở rộng trong các public blockchain như Ethereum.
+
+\section{Phương hướng phát triển}
+
+Trong luận văn này tôi đã xây dựng một layer 2 dùng zk-Rollup có TPS cao với chi phí thấp. Tuy nhiên hiện tại layer vẫn còn nhiều khuyết điểm cần phải khắc phục như sau:
+\begin{itemize}
+\item Cấu trúc các batch còn thô sơ, bài toán cần chứng minh còn phức tạp, thực tế nếu với số lượng batch lớn thì tốn rất nhiều thời gian để sinh ra bằng chứng.
+\item Có thể dùng cho chuyển token, chưa thể tạo và sinh bằng chứng trong trường hợp tổng quát.
+\item Chưa có cơ chế tính phí trên layer 2.
+\item Làm sao để tăng thêm độ tinh cậy của layer.
+\item Thực tế zk-Rollup cũng hỗ trợ chuyển token tới các địa chỉ không tham gia vào layer, nhưng điều này chưa được làm rõ trong cách xây dựng layer của tôi.
+\end{itemize}
+
+Tôi sẽ cố gắng giải quyết các vấn đề này trong tương lai.
+\end{document}

@@ -1,19 +1,19 @@
-% Mẫu luận văn ĐHCT soạn thảo bằng LaTeX, phiên bản 1.0
-% ====================================================================
-% Tác giả: 				Dương Lữ Điện
-% Website:				www.duongludien.com
-% GitHub repository:	https://github.com/duongludien/thesis-template
-% ====================================================================
+\documentclass[a4paper,12pt,oneside]{book}
 
-% twoside, openright: 2 mặt, trang đầu chương luôn nằm bên tay phải
-% \documentclass[a4paper,12pt,twoside,openright]{report}	
+\usepackage{minted}
 
-% oneside: 1 mặt
-\documentclass[a4paper,12pt,oneside]{report}
+\usepackage{mlmodern}
 
-% Tiếng Việt
 \usepackage[utf8]{vietnam}
+\usepackage{caption}
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
 
+\usepackage{lipsum}
+\usepackage{tikz}
+\setlength{\parskip}{1em}
+\usetikzlibrary{positioning, fit, calc}   
+\tikzset{block/.style={draw, thick, text width=4cm ,minimum height=1.3cm, align=center},line/.style={-latex}}
+\usepackage{indentfirst}          
 % Dùng để set margin
 \usepackage[top=3cm,inner=3.5cm,outer=2cm,bottom=3cm,headheight=120pt]{geometry}		
 
@@ -34,6 +34,7 @@
 
 % Định dạng cho header của bảng
 \renewcommand\theadfont{\bfseries}
+\makeatletter\@addtoreset{chapter}{part}\makeatother%
 
 % Định dạng cho code
 \usepackage{fancyvrb}			% Phiên bản nâng cao của verbatim, dùng để chèn code
@@ -62,19 +63,11 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-% Header và footer nếu in 2 mặt
-% \rhead{\fontsize{10}{10} \selectfont Giảng viên hướng dẫn:\\TS. ABCXYZ}				% Header bên phải
-% \lhead{\fontsize{10}{10} \selectfont Đề tài:\\Tên đề tài}								% Header bên trái
-% \fancyfoot[RO]{\fontsize{10}{10} \selectfont \thepage}								% Footer mép ngoài
-% \fancyfoot[LE]{\fontsize{10}{10} \selectfont \thepage}								% Footer mép ngoài
-% \fancyfoot[LO]{\fontsize{10}{10} \selectfont Họ tên sinh viên - Mã SV}				% Footer mép trong
-% \fancyfoot[RE]{\fontsize{10}{10} \selectfont Họ tên sinh viên - Mã SV}				% Footer mép trong
-
 % Header và footer nếu in 1 mặt
-\rhead{\fontsize{10}{12} \selectfont Giảng viên hướng dẫn:\\TS. ABCXYZ}					% Header bên phải
-\lhead{\fontsize{10}{12} \selectfont Đề tài:\\Tên đề tài}									% Header bên trái
+\rhead{\fontsize{10}{12} \selectfont Giảng viên hướng dẫn:\\TS.Trần Công Án}					% Header bên phải
+\lhead{\fontsize{10}{12} \selectfont Đề tài:\\ Xây dựng Layer 2 cho Ethereum dùng phương pháp zk-Rollup}									% Header bên trái
 \rfoot{\fontsize{10}{12} \selectfont \thepage}											% Footer bên phải
-\lfoot{\fontsize{10}{12} \selectfont Họ tên sinh viên - Mã SV}							% Footer bên trái
+\lfoot{\fontsize{10}{12} \selectfont Võ Thành Vũ - B1606954}							% Footer bên trái
 
 \begin{document}
 \subfile{bia-ngoai}		% Gọi file bìa ngoài
@@ -82,10 +75,10 @@
 
 \pagenumbering{roman}	% Kiểu số trang: i, ii, iii, iv, v,...
 
-\chapter*{NHẬN XÉT CỦA GIẢNG VIÊN}
+\chapter*{Nhận xét của giảng viên}
 \subfile{chapters/nhan-xet-gv}
 
-\chapter*{LỜI CẢM ƠN}
+\chapter*{Lời cảm ơn}
 \subfile{chapters/loi-cam-on}
 
 \tableofcontents
@@ -93,14 +86,23 @@
 \listoftables
 
 \clearpage
+\input{chapters/abstraction}
 \pagenumbering{arabic}			% Kiểu số trang: 1, 2, 3,...
-\chapter{Tiêu đề chương 1}
+
+\part{Giới thiệu}
+\chapter{Giới thiệu}
 \subfile{chapters/chapter01}	% Gọi file chương 1, tương tự gọi các chương khác
 
-\chapter{Tiêu đề chương 2}
+\part{Nội Dung}
+\chapter{Cơ sở lý thuyết}
 \subfile{chapters/chapter02}
 
-\bibliography{mybib}{}
-\bibliographystyle{plain}
+\chapter{Phương pháp thực hiện}
 
+\subfile{chapters/chapter03}
+\part{Kết Luận}
+\chapter{Kết luận và phương hướng phát triển}
+\subfile{chapters/chapter04}
+\bibliography{mybib}{}
+\bibliographystyle{siam}
 \end{document}
